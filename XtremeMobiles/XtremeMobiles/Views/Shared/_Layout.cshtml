@@ -1,0 +1,188 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    
+</head>
+<body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Xtreme-Mobiles", "Index", "Home", new { area = "" }, new { @class = "navbar-brand hidden-lg hidden-md" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Price <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+
+                            <li><a href="#" id="link1">4,000-20,000</a></li>
+                            <li><a href="#" id="link2">20,000-40,000</a></li>
+                            <li><a href="#" id="link3">40,000-60,000</a></li>
+                            <li><a href="#" id="link4">60,000-80,000</a></li>
+                            <li><a href="#" id="link5">80,000-100000</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+
+                @Html.Partial("_LoginPartial")
+
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        <div class="bod">
+            @RenderBody()
+        </div>
+        <div id="add">
+            <div class="search">
+                <div class="content">
+                    <div class="content_top">
+                        <div class="heading">
+                            <h3>Search Results</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <table class="table table-bordered" style="margin-top:20px" id="tbl">
+                    <thead>
+                        <tr>
+                            <th>Model</th>
+                            <th>Price</th>
+                            <th>Brand</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bd"></tbody>
+
+                </table>
+            </div>
+        </div>
+        <hr />
+        <footer>
+            <div id="footer">
+                @Html.ActionLink("Home", "Index", "Home") |
+                @Html.ActionLink("About Us", "About", "Home") |
+                @Html.ActionLink("Contact Us", "Contact", "Home") |
+                @Html.ActionLink("Location", "Contact", "Home") |
+                @Html.ActionLink("Privacy", "Other", "Home") |
+                @Html.ActionLink("Terms Of Use", "Other", "Home")
+                <p>
+                    &copy; @DateTime.Now.Year - All rights reserved<br />
+                    Designed by Asim Rana BCSF11A016
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    @RenderSection("s1", required: false)
+    
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $(".search").hide();
+            var p1, p2;
+            $('a#link1').click(function () {
+                $(".hid").remove();
+
+                $(".search").show();
+                //$("tbody").removeData();
+                $("#tbl tr").remove();
+                p1 = 4000;
+                p2 = 20000;
+                $.getJSON("/Brand/getByPrice?p1=4000&p2=20000", function (data) {
+                    for (i = 0; i < data.length; i++) {
+
+                        $('#tbl tbody').append("<tr><td><li style=text-decoration:none;list-style-type:none><a href=\"/Brand/Specifications?mod=" + data[i].Model + "\">" + data[i].Model + "</a></li></td><td>" + data[i].Price + "</td><td>" + data[i].pId + "</td></tr>");
+                    }
+
+                });
+
+
+            });
+
+
+            $('a#link2').click(function () {
+                $(".hid").remove();
+                $(".search").show();
+                $("#tbl tr").remove();
+                p1 = 20000;
+                p2 = 40000;
+                $.getJSON("/Brand/getByPrice?p1=" + p1 + "&p2=" + p2, function (data) {
+                    for (i = 0; i < data.length; i++) {
+
+                        $('#tbl tbody').append("<tr><td><li style=text-decoration:none;list-style-type:none><a href=\"/Brand/Specifications?mod=" + data[i].Model + "\">" + data[i].Model + "</a></li></td><td>" + data[i].Price + "</td><td>" + data[i].pId + "</td></tr>");
+                    }
+
+                });
+
+            });
+            $('a#link3').click(function () {
+                $(".hid").remove();
+                $(".search").show();
+                $("#tbl tr").remove();
+                p1 = 40000;
+                p2 = 60000;
+                $.getJSON("/Brand/getByPrice?p1=" + p1 + "&p2=" + p2, function (data) {
+                    for (i = 0; i < data.length; i++) {
+
+                        $('#tbl tbody').append("<tr><td><li style=text-decoration:none;list-style-type:none><a href=\"/Brand/Specifications?mod=" + data[i].Model + "\">" + data[i].Model + "</a></li></td><td>" + data[i].Price + "</td><td>" + data[i].pId + "</td></tr>");
+                    }
+
+                });
+
+            });
+            $('a#link4').click(function () {
+                $(".hid").remove();
+                $(".search").show();
+                $("#tbl tr").remove();
+                p1 = 60000;
+                p2 = 80000;
+                $.getJSON("/Brand/getByPrice?p1=" + p1 + "&p2=" + p2, function (data) {
+                    for (i = 0; i < data.length; i++) {
+
+                        $('#tbl tbody').append("<tr><td><li style=text-decoration:none;list-style-type:none><a href=\"/Brand/Specifications?mod=" + data[i].Model + "\">" + data[i].Model + "</a></li></td><td>" + data[i].Price + "</td><td>" + data[i].pId + "</td></tr>");
+                    }
+
+                });
+
+            });
+            $('a#link5').click(function () {
+                $(".hid").remove();
+                $(".search").show();
+                $("#tbl tr").remove();
+                p1 = 80000;
+                p2 = 100000;
+                $.getJSON("/Brand/getByPrice?p1=" + p1 + "&p2=" + p2, function (data) {
+                    for (i = 0; i < data.length; i++) {
+
+                        $('#tbl tbody').append("<tr><td><li style=text-decoration:none;list-style-type:none><a href=\"/Brand/Specifications?mod=" + data[i].Model + "\">" + data[i].Model + "</a></li></td><td>" + data[i].Price + "</td><td>" + data[i].pId + "</td></tr>");
+                    }
+
+                });
+
+            });
+
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,158 @@
+﻿@{
+    ViewBag.Title = "Specifications";
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+@*@section s2{*@
+@*<script type="text/javascript">
+        $(document).ready(function () {
+            alert("Hello ");
+            $("#cont").on('click', f1);
+
+            function f1() {
+                alert("Hello from f1");
+
+                @Html.Action("Index" , "Home");
+
+
+            }
+        });
+    </script>*@
+@*}*@
+
+<div class="row" style="margin-bottom:70px">
+    <div class="col-md-4 hidden-sm hidden-xs">
+        <a class="navbar-brand " href="#">
+            <img src="~/img/logo.png" alt="Xtreme Mobiles" />
+        </a>
+    </div>
+    <div class="col-md-4 col-xs-12 col-md-offset-4">
+
+        @if (@Session["user"] != null)
+        {
+            <div class="cart">
+                <h3>
+                    Welcome to our Online Store! @Session["user"]
+                </h3>
+            </div>
+        }
+    </div>
+</div>
+@if (@Session["user"] != null)
+{
+    <div class="row">
+        <div class="col-md-4 col-xs-12 col-md-offset-8" style="margin-top:-70px">
+
+            <div class="shopping">
+                <div class="c1" style="display:inline-block;margin-right:10px;"><h1><span class="glyphicon glyphicon-shopping-cart"></span></h1></div>
+                <div class="c2" style="display:inline-block;">
+                    <h3>
+                        Your Shopping Cart
+                    </h3>
+                    <a href="/Cart/ViewCart" style="text-decoration:none;float:right">View Cart &raquo;</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}
+<div class="row">
+    <div class="col-md-3 col-xs-12 col-sm-12" style="margin-bottom:20px">
+        <div class="categories">
+            <ul class="list-unstyled">
+                <h3>Brands</h3>
+                <li>@Html.ActionLink("Nokia", "Nokia", "Brand")</li>
+                <li>@Html.ActionLink("HTC", "HTC", "Brand")</li>
+                <li>@Html.ActionLink("QMobile", "QMobile", "Brand")</li>
+                <li>@Html.ActionLink("Huawei", "Huawei", "Brand")</li>
+                <li>@Html.ActionLink("Samsung", "Samsung", "Brand")</li>
+                <li>@Html.ActionLink("iPhone", "iPhone", "Brand")</li>
+                <li>@Html.ActionLink("Sony", "Sony", "Brand")</li>
+                <li>@Html.ActionLink("Lenovo", "Lenovo", "Brand")</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-md-9 hidden-xs hidden-sm">
+
+        <script src="~/Scripts/slider.js" type="text/javascript"></script>
+
+        <div id="slider" class="action  hide-from-mobile">
+            <img src="~/img/nokia.jpg" />
+            <img src="~/img/iphone.jpg" />
+            <img src="~/img/htc.jpg" />
+        </div>
+    </div>
+</div>
+<div class="hid">
+    <div class="row" style="margin-top:30px">
+        <div class="col-sm-2 col-xs-2 col-md-1">
+            <img src="@ViewBag.product.Image" />
+        </div>
+        <div class="col-sm-10 col-xs-10 col-md-11 ">
+            <h4 style="text-align:left">
+                @ViewBag.product.pId
+                <br /><br />
+                @ViewBag.product.Model
+                <br /><br />
+                Rs. @ViewBag.product.Price
+            </h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <table class="table table-bordered" style="margin-top:20px">
+                <tbody>
+                    <tr>
+                        <th>Display</th>
+                        <td>@ViewBag.specs.resolution</td>
+                    </tr>
+                    <tr>
+                        <th>Camera</th>
+                        <td>@ViewBag.specs.camera</td>
+                    </tr>
+                    <tr>
+                        <th>RAM</th>
+                        <td>@ViewBag.specs.ram</td>
+                    </tr>
+                    <tr>
+                        <th>ROM</th>
+                        <td>@ViewBag.specs.rom</td>
+                    </tr>
+                    <tr>
+                        <th>Processor</th>
+                        <td>@ViewBag.specs.cpu</td>
+                    </tr>
+                    <tr>
+                        <th>OS</th>
+                        <td>@ViewBag.specs.os</td>
+                    </tr>
+                    <tr>
+                        <th>Wifi</th>
+                        <td>@ViewBag.specs.wifi</td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="btn btn-danger">
+                @if (@Session["user"] != null)
+                {
+                    <a href="/Cart/AddToCart?mod=@ViewBag.product.Model" style="color:white;text-decoration: none">Add to Cart</a>
+
+                }
+                else
+                {
+                    <a href="/Account/Login" style="color:white;text-decoration: none">Add to Cart</a>
+                }
+            </div>
+            <div class="btn btn-default">
+                <a href="/Home/Index" style="color:white;text-decoration: none">Continue Shopping</a>
+            </div>
+        </div>
+    </div>
+</div>
+

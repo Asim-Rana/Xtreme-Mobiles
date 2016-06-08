@@ -1,0 +1,30 @@
+﻿@model List<XtremeMobiles.Models.Product>
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+<table class="table table-bordered" style="margin-top:20px">
+    <thead>
+        <tr>
+            <th>Model</th>
+            <th>Price</th>
+            <th>Brand</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var s in Model)
+        {
+            <tr>
+                <td>@s.Model</td>
+                <td>@s.Price</td>
+                <td>@s.pId</td>
+                <td><a href="/Admin/UpdateProduct?Mod=@s.Model">Update</a></td>
+                <td><a href="/Admin/DeleteProduct?Mod=@s.Model">Delete</a></td>
+            </tr>
+        }
+    </tbody>
+    
+</table>
+
+

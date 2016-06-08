@@ -1,0 +1,112 @@
+﻿@model XtremeMobiles.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+@section s1{
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#b1").on('click', f1);
+
+            function f1() {
+
+                var x = $("#email").val();
+
+                $.getJSON("/Account/CheckUser?un=" + x, function (data) {
+                    if (data) {
+                        $("p").text("User Not Available");
+                    }
+                    else {
+                        $("p").text("User Available");
+                    }
+                });
+
+            }
+        });
+    </script>
+}
+<div class="row" style="margin-top:25px">
+    <div class="col-md-5 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <strong>Register Yourself</strong>
+            </div>
+            <div class="panel-body">
+
+                @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div id="message" style="color:green">
+                        @if (@ViewBag.success != "")
+                        {
+                            @ViewBag.success;
+                        }
+                    </div>
+                    <div id="error" style="color:red">
+                        @if (@ViewBag.error != "")
+                        {
+                            @ViewBag.error;
+                        }
+                    </div>
+
+                    @Html.ValidationSummary("", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.YourName, new { @class = "col-md-2 col-xs-2 col-sm-2 control-label" })
+                        <div class="col-md-10 col-xs-10 col-sm-10">
+                            @Html.TextBoxFor(m => m.YourName, new { @class = "form-control" })
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 col-xs-2 col-sm-2 control-label" })
+                        <div class="col-md-10 col-xs-10 col-sm-10">
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @id = "email" })
+                            
+                        </div>
+
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6" style="margin-left:75px">
+                            <input type="button" id="b1" class="btn btn-default" value="Check" />
+                        </div>
+                        <div class="col-md-6" style="margin-left:150px;margin-top:-25px">
+                            <p style="color:red"></p>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top:15px">
+                        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 col-xs-2 col-sm-2 control-label" })
+                        <div class="col-md-10 col-xs-10 col-sm-10">
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Address, new { @class = "col-md-2 col-xs-2 col-sm-2 control-label" })
+                        <div class="col-md-10 col-xs-10 col-sm-10">
+                            @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Phone, new { @class = "col-md-2 col-xs-2 col-sm-2 control-label" })
+                        <div class="col-md-10 col-xs-10 col-sm-10">
+                            @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10 col-xs-offset-2 col-xs-10 col-sm-offset-2 col-sm-10">
+                            <input type="submit" class="btn btn-default" value="Register" />
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

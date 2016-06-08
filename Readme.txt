@@ -1,0 +1,1 @@
+It is an online mobile store where user can review the specifications and buy mobile phone developed in asp.net and bootstrap for front end.

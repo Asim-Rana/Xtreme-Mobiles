@@ -1,0 +1,106 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+<div id="error" style="color:red">
+    @if (@ViewBag.message != "")
+    {
+        @ViewBag.message;
+    }
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <strong>Add New Product</strong>
+    </div>
+    <div class="panel-body">
+        <form method="post" action="/Admin/AddProductToDb" class="form-horizontal" role="form" enctype="multipart/form-data">
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="brand">Brand Name:</label>
+                <div class="col-sm-10">
+                    <input type="text" name="c.Name" placeholder="Brand Name" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="model">Model Number:</label>
+                <div class="col-sm-10">
+                    <input type="text" name="p.Model" placeholder="Model Number" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="price">Price:</label>
+                <div class="col-sm-10">
+                    <input type="number" name="p.Price" placeholder="Price" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="image">Upload Picture:</label>
+                <div class="col-sm-10">
+                    <input type="file" name="image" required/>
+                </div>
+            </div>
+            <h4> Specifications </h4>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="email">Resolution:</label>
+                <div class="col-sm-10">
+                    <input type="text" name="s.resolution" placeholder="Resolution" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="email">Camera:</label>
+                <div class="col-sm-10">
+                    <input type="text" name="s.camera" placeholder="Camera Pixels" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="email">RAM:</label>
+                <div class="col-sm-10">
+                    <input type="text" name="s.ram" placeholder="RAM size" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="email">ROM:</label>
+                <div class="col-sm-10">
+                    <input type="text" name="s.rom" placeholder="ROM size" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="email">Processor:</label>
+                <div class="col-sm-10">
+                    <input type="text" name="s.cpu" placeholder="Processor" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="email">OS:</label>
+                <div class="col-sm-10">
+                    <input type="text" name="s.os" placeholder="Operating System" required />
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="email">Wifi:</label>
+                <div class="col-sm-10">
+                    Yes <input type="radio" name="s.wifi" value="yes" />
+                    <br>
+                    No <input type="radio" name="s.wifi" value="no" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="email">Latest Phone:</label>
+                <div class="col-sm-10">
+                    Yes <input type="radio" name="p.latest" value="yes" />
+                    <br>
+                    No <input type="radio" name="p.latest" value="no" />
+                </div>
+            </div>
+
+            <div class="form-group">
+
+                <div class="col-sm-10">
+                    <input type="submit" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
